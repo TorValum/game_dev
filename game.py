@@ -31,7 +31,9 @@ def ap(rp):
     return os.path.join(game_path, rp)
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
 icon = pygame.image.load(ap('0qCNxSjX.png'))
+
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Perfect game")
 clock = pygame.time.Clock()
@@ -56,11 +58,24 @@ def rauf(rect, dx, dy):
      #   screen.blit(self.python_image, self.point)
 
 
+
+##class GameObj():
+  #  def __init__(self, img, x, y):
+   #     self.python_image = pygame.image.load(img)
+    #    self.point = self.python_image.get_rect(center=(x, y))
+
+    #def draw(self, screen):
+     #   screen.blit(self.python_image, self.point)
+
+
 class Player:
     def __init__(self, x, y, image_path):
         self.image = pygame.image.load(image_path)
         self.rect = self.image.get_rect(topleft=(x*k, y*k))
+
         self.speed = 5
+
+
 
     def move(self, keys):
         if keys[pygame.K_a] and rauf(self.rect, -self.speed, 0):
@@ -91,6 +106,7 @@ class BotPlayer:
         self.move_delay = 1000  # 1 секунда
         self.speed = k
 
+
     def random_move(self):
         current_time = pygame.time.get_ticks()
         if current_time - self.last_move_time >= self.move_delay:
@@ -115,6 +131,7 @@ s2 = pygame.image.load(ap('cobble_blood_1.png'))
 
 pygame.joystick.init()
 joysticks = {}
+
 
 running = True
 while running:
@@ -161,7 +178,9 @@ while running:
 ##            print(f"Hat {i} value: {str(hat)}")
 
     # Обновление экрана
+
     # Cоздание карты
+
     for i in range(len(gamemap)):
         for j in range(len(gamemap[0])):
             if gamemap[i][j] == "*":
@@ -170,8 +189,10 @@ while running:
                 rect1 = screen.blit(s2, (j * k, i * k))
 
    # screen.blit()  # Заполняем экран черным цветом
+
     player.draw(screen) # Рисуем персонажаpygame.event.pump()
     bot.draw(screen)
+
     pygame.display.flip()  # Обновляем экран
     
 
